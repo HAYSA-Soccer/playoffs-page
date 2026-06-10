@@ -61,7 +61,11 @@ async function loadTeams() {
   document.getElementById("last-updated").textContent = "Last updated: " + data.updated;
 
   // ⭐ NEW: Insert hype text from the sheet
-  document.getElementById("hype-text").textContent = data.hype_text;
+  document.getElementById("hype-text").innerHTML =
+     data.hype_text
+       .replace(/\|\|/g, "<br>")
+       .replace(/\n/g, "<br>");
+
 
   // NEW: Build Today’s Games bar
   buildTodaysGames(data.teams);
