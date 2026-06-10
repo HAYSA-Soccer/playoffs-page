@@ -1,0 +1,34 @@
+<div class="flip-card">
+  <input type="checkbox" class="flip-checkbox">
+  <div class="flip-card-inner">
+
+    <div class="flip-card-front">
+      <div class="card-header">
+        <h2>{{division}}</h2>
+        <h3>{{team}} ({{coach}})</h3>
+      </div>
+      <div class="card-body">
+        <div class="team-meta">
+          <div class="meta-line">Regular Season: {{record}}</div>
+          <div class="meta-line">Seed: #{{seed}}</div>
+          <div class="meta-line">Status: {{status}}</div>
+        </div>
+        <div class="divider"></div>
+        <p>
+          <strong>Round:</strong> {{round}}<br>
+          <strong>Opponent:</strong> {{opponent}}<br>
+          <strong>Date/Time:</strong> {{time}}<br>
+          <strong>Field:</strong> {{field}}
+        </p>
+      </div>
+    </div>
+
+    <div class="flip-card-back">
+      <div class="back-title">Path to Finals</div>
+      <div class="path-box"><strong>Next:</strong> {{path_next}}</div>
+      <div class="path-box"><strong>Then:</strong> {{path_then}}</div>
+      <div class="path-box"><strong>Final:</strong> {{path_final}}</div>
+    </div>
+
+  </div>
+</div>
