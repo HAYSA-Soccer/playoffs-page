@@ -17,7 +17,7 @@ async function loadTeams() {
   console.log("Template loaded");
 
   teams
-    .filter(t => String(t.active).toUpperCase() === "YES")
+    .filter(t => String(t.active).trim().toUpperCase() === "YES")
     .forEach(team => {
       console.log("Rendering team:", team);
 
