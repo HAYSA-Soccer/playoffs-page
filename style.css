@@ -20,9 +20,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
-  justify-items: center;   /* centers items inside each column */
-  justify-content: center; /* centers the whole row of columns */
+  justify-items: center;
+  max-width: 960px;   /* limit total grid width */
+  margin: 0 auto;     /* center the grid block */
 }
+
 
 
 /* ============================
