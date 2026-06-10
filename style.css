@@ -23,12 +23,11 @@
 /* flip card basics */
 .flip-card {
   width: 100%;
-  max-width: 300px;   /* desktop max */
+  max-width: 300px;
   height: 360px;
   perspective: 1000px;
   position: relative;
 }
-
 
 .flip-checkbox {
   position: absolute;
@@ -127,7 +126,6 @@
   font-size: 13px;
 }
 
-
 /* ============================
    Dynamic Header Styling
    ============================ */
@@ -140,13 +138,13 @@
 .hay-header h1 {
   margin: 0 0 6px 0;
   font-size: 28px;
-  color: #1e3a8a; /* deep navy */
+  color: #1e3a8a;
   font-weight: 800;
 }
 
 .hay-updated {
   font-size: 13px;
-  color: #374151; /* slate gray */
+  color: #374151;
   margin-bottom: 12px;
 }
 
@@ -157,8 +155,6 @@
 .hay-today-games {
   max-width: 900px;
   margin: 0 auto 20px auto;
-  background: #ff7f00; /* bright orange */
-  color: #ffffff;
   padding: 12px 16px;
   border-radius: 10px;
   text-align: left;
@@ -166,37 +162,14 @@
   font-size: 14px;
 }
 
-.hay-today-games-title {
-  font-weight: 700;
-  margin-bottom: 6px;
-  font-size: 15px;
-}
-
-.hay-today-game-item {
-  margin: 3px 0;
-  line-height: 1.4;
-}
-/* Base container */
-.hay-today-games {
-  max-width: 900px;
-  margin: 0 auto 20px auto;
-  padding: 12px 16px;
-  border-radius: 10px;
-  text-align: left;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-  font-size: 14px;
-}
-
-/* When there ARE games today */
 .hay-today-games-active {
   background: #ff7f00;
   color: #ffffff;
 }
 
-/* When there are NO games today */
 .hay-today-games-empty {
-  background: #e5e7eb; /* light gray */
-  color: #1f2937;      /* dark gray text */
+  background: #e5e7eb;
+  color: #1f2937;
 }
 
 .hay-today-games-title {
@@ -211,7 +184,7 @@
 }
 
 /* ============================
-   MOBILE FIXES (REVISED)
+   MOBILE FIXES (FINAL)
    ============================ */
 @media (max-width: 600px) {
 
@@ -220,29 +193,29 @@
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
-    overflow-x: hidden; /* prevent horizontal scroll */
+    overflow-x: hidden;
   }
 
   .card-grid {
-    grid-template-columns: 1fr; /* force single column */
+    grid-template-columns: 1fr;
     gap: 20px;
     width: 100%;
   }
 
   .flip-card {
-    width: 100% !important;   /* override fixed width */
+    width: 100% !important;
     max-width: 100% !important;
-    height: auto;             /* allow height to scale */
+    height: auto !important;
   }
 
   .flip-card-inner {
-    height: auto;
+    height: auto !important;
   }
 
   .flip-card-front,
   .flip-card-back {
-    height: auto;
-    position: relative; /* fixes overflow issues */
+    position: relative !important;
+    height: auto !important;
   }
 
   .hay-header,
