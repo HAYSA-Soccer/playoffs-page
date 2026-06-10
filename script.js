@@ -3,15 +3,24 @@ console.log("script.js loaded");
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbwaqSktudVfYj2RrdZNnO-NP0LXbVspLc1MND_DnpTs26A7xmsfaLOuyViBbYs3YFnC/exec";
 
 async function loadTeams() {
+  console.log("Fetching:", SHEET_URL);
+
   const res = await fetch(SHEET_URL);
+  console.log("Response status:", res.status);
+
   const teams = await res.json();
+  console.log("Teams returned:", teams);
+
   const grid = document.getElementById('card-grid');
 
   const template = await fetch('template.html').then(r => r.text());
+  console.log("Template loaded");
 
   teams
     .filter(t => String(t.active).toUpperCase() === "YES")
     .forEach(team => {
+      console.log("Rendering team:", team);
+
       let html = template
         .replace(/{{division}}/g, team.division)
         .replace(/{{team}}/g, team.team)
