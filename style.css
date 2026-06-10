@@ -174,3 +174,36 @@
   margin: 3px 0;
   line-height: 1.4;
 }
+/* Base container */
+.hay-today-games {
+  max-width: 900px;
+  margin: 0 auto 20px auto;
+  padding: 12px 16px;
+  border-radius: 10px;
+  text-align: left;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  font-size: 14px;
+}
+
+/* When there ARE games today */
+.hay-today-games-active {
+  background: #ff7f00;
+  color: #ffffff;
+}
+
+/* When there are NO games today */
+.hay-today-games-empty {
+  background: #e5e7eb; /* light gray */
+  color: #1f2937;      /* dark gray text */
+}
+
+.hay-today-games-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.hay-today-game-item {
+  margin: 3px 0;
+  line-height: 1.4;
+}
