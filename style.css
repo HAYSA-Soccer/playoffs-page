@@ -207,3 +207,33 @@
   margin: 3px 0;
   line-height: 1.4;
 }
+
+/* ============================
+   MOBILE FIXES
+   ============================ */
+@media (max-width: 600px) {
+
+  .hay-wrapper {
+    padding: 15px;        /* reduce padding */
+    margin: 0 auto;       /* ensure centering */
+    width: 100%;          /* prevent overflow */
+    box-sizing: border-box;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;   /* one card per row */
+    gap: 20px;
+  }
+
+  .flip-card {
+    width: 100%;          /* card fills container */
+    max-width: 320px;     /* but doesn’t get too big */
+    margin: 0 auto;       /* center each card */
+  }
+
+  .hay-header,
+  #hype-text,
+  #today-games {
+    text-align: center;
+  }
+}
