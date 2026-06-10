@@ -22,11 +22,13 @@
 
 /* flip card basics */
 .flip-card {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;   /* desktop max */
   height: 360px;
   perspective: 1000px;
   position: relative;
 }
+
 
 .flip-checkbox {
   position: absolute;
@@ -209,26 +211,38 @@
 }
 
 /* ============================
-   MOBILE FIXES
+   MOBILE FIXES (REVISED)
    ============================ */
 @media (max-width: 600px) {
 
   .hay-wrapper {
-    padding: 15px;        /* reduce padding */
-    margin: 0 auto;       /* ensure centering */
-    width: 100%;          /* prevent overflow */
+    padding: 10px;
+    margin: 0 auto;
+    width: 100%;
     box-sizing: border-box;
+    overflow-x: hidden; /* prevent horizontal scroll */
   }
 
   .card-grid {
-    grid-template-columns: 1fr;   /* one card per row */
+    grid-template-columns: 1fr; /* force single column */
     gap: 20px;
+    width: 100%;
   }
 
   .flip-card {
-    width: 100%;          /* card fills container */
-    max-width: 320px;     /* but doesn’t get too big */
-    margin: 0 auto;       /* center each card */
+    width: 100% !important;   /* override fixed width */
+    max-width: 100% !important;
+    height: auto;             /* allow height to scale */
+  }
+
+  .flip-card-inner {
+    height: auto;
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    height: auto;
+    position: relative; /* fixes overflow issues */
   }
 
   .hay-header,
