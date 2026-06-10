@@ -1,3 +1,6 @@
+/* ============================
+   WRAPPER + GRID
+   ============================ */
 .hay-wrapper {
   background: #bfeaff;
   padding: 35px;
@@ -21,12 +24,12 @@
 }
 
 /* ============================
-   FLIP CARD — DESKTOP + MOBILE BASE
+   FLIP CARD — CORRECT MODEL
    ============================ */
 .flip-card {
   width: 100%;
   max-width: 300px;
-  height: 360px;              /* FIXED HEIGHT — required for perfect flip */
+  height: 360px;              /* FIXED HEIGHT — required */
   perspective: 1000px;
   position: relative;
 }
@@ -55,7 +58,9 @@
 
 .flip-card-front,
 .flip-card-back {
-  position: absolute;         /* REQUIRED for flip alignment */
+  position: absolute;         /* REQUIRED */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;               /* MUST match parent */
   backface-visibility: hidden;
@@ -79,7 +84,6 @@
 /* ============================
    CARD CONTENT
    ============================ */
-
 .card-header {
   background: linear-gradient(90deg, #1e3a8a, #ff7f00);
   padding: 14px;
@@ -135,7 +139,6 @@
 /* ============================
    HEADER + TODAY'S GAMES
    ============================ */
-
 .hay-header {
   text-align: center;
   margin-bottom: 25px;
@@ -186,7 +189,7 @@
 }
 
 /* ============================
-   MOBILE FIXES — FINAL + CORRECT
+   MOBILE FIXES — CORRECT
    ============================ */
 @media (max-width: 600px) {
 
@@ -206,19 +209,19 @@
 
   /* Keep flip-card fixed height — required for perfect flip */
   .flip-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: 360px !important;     /* DO NOT AUTO-HEIGHT */
+    width: 100%;
+    max-width: 100%;
+    height: 360px;     /* DO NOT AUTO-HEIGHT */
   }
 
   .flip-card-inner {
-    height: 100% !important;
+    height: 100%;
   }
 
-  /* Instead of resizing the card, make the INSIDE scroll */
+  /* DO NOT change position or height of front/back */
   .flip-card-front,
   .flip-card-back {
-    overflow-y: auto !important;  /* content scrolls inside */
+    overflow-y: auto;  /* content scrolls inside if needed */
     padding-bottom: 20px;
   }
 
