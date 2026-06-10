@@ -199,7 +199,7 @@
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
-    overflow-x: hidden;
+    overflow-x: visible;
   }
 
   .card-grid {
