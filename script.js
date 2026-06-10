@@ -9,7 +9,7 @@ function buildTodaysGames(teams) {
   const el = document.getElementById("today-games");
   if (!el) return;
 
-  const today = new Date().toISOString().slice(0, 10); // yyyy-mm-dd
+  const today = new Date().toISOString().slice(0, 10);
 
   const todaysGames = teams.filter(t => {
     if (!t.time) return false;
@@ -17,12 +17,19 @@ function buildTodaysGames(teams) {
   });
 
   if (todaysGames.length === 0) {
+    el.classList.remove("hay-today-games-active");
+    el.classList.add("hay-today-games-empty");
+
     el.innerHTML = `
-      <div class="hay-today-games-title">🔥 Today’s Games</div>
+      <div class="hay-today-games-title">Today’s Games</div>
       <div>No games scheduled today.</div>
     `;
     return;
   }
+
+  // If there ARE games today → hype mode
+  el.classList.remove("hay-today-games-empty");
+  el.classList.add("hay-today-games-active");
 
   let html = `<div class="hay-today-games-title">🔥 Today’s Games</div>`;
   todaysGames.forEach(t => {
@@ -35,6 +42,7 @@ function buildTodaysGames(teams) {
 
   el.innerHTML = html;
 }
+
 
 /* -------------------------------------------------------
    Main Loader
