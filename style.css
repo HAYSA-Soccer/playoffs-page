@@ -1,0 +1,126 @@
+.hay-wrapper {
+  background: #bfeaff;
+  padding: 35px;
+  border-radius: 10px;
+  font-family: system-ui, sans-serif;
+}
+
+.hay-hype {
+  text-align: center;
+  color: #1e3a8a;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+/* flip card basics */
+.flip-card {
+  width: 300px;
+  height: 360px;
+  perspective: 1000px;
+  position: relative;
+}
+
+.flip-checkbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+  border-radius: 16px;
+  position: relative;
+}
+
+.flip-checkbox:checked ~ .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+.flip-card-front {
+  background: #ffffff;
+  color: #1e3a8a;
+}
+
+.flip-card-back {
+  background: #f0f7ff;
+  color: #1e3a8a;
+  transform: rotateY(180deg);
+  padding: 18px;
+}
+
+.card-header {
+  background: linear-gradient(90deg, #1e3a8a, #ff7f00);
+  padding: 14px;
+  color: white;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.card-header h3 {
+  margin: 4px 0 0 0;
+  font-size: 15px;
+}
+
+.card-body {
+  padding: 15px;
+  font-size: 14px;
+}
+
+.team-meta {
+  font-size: 13px;
+  margin: 8px 0 12px 0;
+  color: #1e3a8a;
+  line-height: 1.4;
+}
+
+.meta-line {
+  margin-bottom: 2px;
+}
+
+.divider {
+  border-top: 2px solid #ff7f00;
+  margin: 10px 0;
+}
+
+.back-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.path-box {
+  background: white;
+  border-left: 6px solid #ff7f00;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
