@@ -1,5 +1,7 @@
+console.log("script.js loaded");
+
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbwaqSktudVfYj2RrdZNnO-NP0LXbVspLc1MND_DnpTs26A7xmsfaLOuyViBbYs3YFnC/exec";
-  
+
 async function loadTeams() {
   const res = await fetch(SHEET_URL);
   const teams = await res.json();
