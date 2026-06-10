@@ -20,8 +20,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
-  justify-items: center;
+  justify-items: center;   /* centers items inside each column */
+  justify-content: center; /* centers the whole row of columns */
 }
+
 
 /* ============================
    FLIP CARD
