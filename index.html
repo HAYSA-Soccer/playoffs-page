@@ -7,14 +7,26 @@
 </head>
 <body>
   <div class="hay-wrapper">
-    <h1>Spring 2026 Playoffs Spotlight</h1>
+
+    <!-- ============================
+         Dynamic Header Section
+         ============================ -->
+    <div class="hay-header">
+      <h1 id="season-title"></h1>
+      <div id="last-updated" class="hay-updated"></div>
+      <div id="today-games" class="hay-today-games"></div>
+    </div>
+
+    <!-- Your existing hype text -->
     <p class="hay-hype">
       Come cheer on our HAYSA teams as they battle for the #1 spot!
     </p>
 
+    <!-- Card Grid -->
     <div id="card-grid" class="card-grid">
       <!-- Cards injected by script.js -->
     </div>
+
   </div>
 
   <script src="script.js"></script>
