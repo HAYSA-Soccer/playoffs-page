@@ -21,8 +21,8 @@ function buildTodaysGames(teams) {
     el.classList.add("hay-today-games-empty");
 
     el.innerHTML = `
-      <div class="hay-today-games-title">Today’s Games</div>
-      <div>No games scheduled today.</div>
+      <div class="hay-today-games-title">Today’s Playoff Games</div>
+      <div>No playoff games scheduled today.</div>
     `;
     return;
   }
