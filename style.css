@@ -1,3 +1,8 @@
+.flip-card {
+  border: 5px solid red !important;
+}
+
+
 /* ============================
    WRAPPER + GRID
    ============================ */
@@ -230,4 +235,16 @@
   #today-games {
     text-align: center;
   }
+}
+
+/* ============================
+   RESET OUTSIDE INTERFERENCE
+   ============================ */
+
+.hay-wrapper, 
+.hay-wrapper * {
+  box-sizing: border-box !important;
+  transform: none !important;
+  perspective: none !important;
+  backface-visibility: hidden !important;
 }
