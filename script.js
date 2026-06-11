@@ -101,11 +101,13 @@ async function loadTeams() {
         .replace(/{{status}}/g, team.status)
         .replace(/{{round}}/g, team.round)
         .replace(/{{opponent}}/g, team.opponent)
+        .replace(/{{date}}/g, team.date)      // ⭐ NEW — REQUIRED
         .replace(/{{time}}/g, team.time)
         .replace(/{{field}}/g, team.field)
         .replace(/{{path_next}}/g, team.path_next)
         .replace(/{{path_then}}/g, team.path_then)
         .replace(/{{path_final}}/g, team.path_final);
+
 
       const wrapper = document.createElement('div');
       wrapper.innerHTML = html;
