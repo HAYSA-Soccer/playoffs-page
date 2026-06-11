@@ -2,6 +2,34 @@ console.log("script.js loaded");
 
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbwaqSktudVfYj2RrdZNnO-NP0LXbVspLc1MND_DnpTs26A7xmsfaLOuyViBbYs3YFnC/exec";
 
+function formatPrettyDate(raw) {
+  if (!raw || raw === "TBD") return raw;
+
+  const d = new Date(raw);
+  if (isNaN(d)) return raw; // fallback if sheet has weird data
+
+  const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const months = [
+    "January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+  ];
+
+  const dayName = days[d.getDay()];
+  const monthName = months[d.getMonth()];
+  const dateNum = d.getDate();
+  const year = d.getFullYear();
+
+  // Add ordinal suffix: st, nd, rd, th
+  const suffix =
+    dateNum % 10 === 1 && dateNum !== 11 ? "st" :
+    dateNum % 10 === 2 && dateNum !== 12 ? "nd" :
+    dateNum % 10 === 3 && dateNum !== 13 ? "rd" : "th";
+
+  return `${dayName}, ${monthName} ${dateNum}${suffix}, ${year}`;
+}
+
+
+
 /* -------------------------------------------------------
    Build Today’s Games Bar (using new "date" column)
 ------------------------------------------------------- */
@@ -101,12 +129,13 @@ async function loadTeams() {
         .replace(/{{status}}/g, team.status)
         .replace(/{{round}}/g, team.round)
         .replace(/{{opponent}}/g, team.opponent)
-        .replace(/{{date}}/g, team.date)      // ⭐ NEW — REQUIRED
+        .replace(/{{date}}/g, formatPrettyDate(team.date))   // ⭐ NEW
         .replace(/{{time}}/g, team.time)
         .replace(/{{field}}/g, team.field)
         .replace(/{{path_next}}/g, team.path_next)
         .replace(/{{path_then}}/g, team.path_then)
         .replace(/{{path_final}}/g, team.path_final);
+
 
 
       const wrapper = document.createElement('div');
