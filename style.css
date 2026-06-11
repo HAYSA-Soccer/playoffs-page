@@ -1,4 +1,13 @@
 /* ============================
+   GLOBAL FIXES (TeamSideline mobile scroll)
+   ============================ */
+html, body {
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+/* ============================
    WRAPPER + GRID
    ============================ */
 .hay-wrapper {
@@ -6,6 +15,11 @@
   padding: 35px;
   border-radius: 10px;
   font-family: system-ui, sans-serif;
+
+  /* TeamSideline overrides */
+  width: 100% !important;
+  max-width: none !important;
+  overflow: visible !important;
 }
 
 .hay-hype {
@@ -21,11 +35,11 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
   justify-items: center;
-  max-width: 960px;   /* limit total grid width */
-  margin: 0 auto;     /* center the grid block */
+
+  /* Center grid on desktop */
+  max-width: 960px;
+  margin: 0 auto;
 }
-
-
 
 /* ============================
    FLIP CARD
@@ -73,7 +87,6 @@
   box-shadow: 0 4px 14px rgba(0,0,0,0.25);
   box-sizing: border-box;
 }
-
 
 .flip-card-front {
   background: #ffffff;
@@ -202,12 +215,15 @@
     padding: 10px;
     margin: 0 auto;
     width: 100%;
+    overflow: visible !important;  /* critical for TeamSideline mobile */
+    height: auto !important;
+    max-height: none !important;
   }
 
   .card-grid {
     grid-template-columns: 1fr;
     gap: 20px;
-    width: 100%;
+    /* do NOT force width:100% — keeps centering correct */
   }
 
   .flip-card {
@@ -227,4 +243,3 @@
     text-align: center;
   }
 }
-
