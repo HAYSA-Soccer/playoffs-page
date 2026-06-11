@@ -243,3 +243,16 @@ html, body {
     text-align: center;
   }
 }
+
+/* ============================
+   TEAMSIDEINE MOBILE SCROLL FIX
+   ============================ */
+
+.tsMainContent,
+.tsBody,
+.tsContent,
+.tsPage {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
