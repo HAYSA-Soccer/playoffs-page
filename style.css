@@ -245,14 +245,22 @@ html, body {
 }
 
 /* ============================
-   TEAMSIDEINE MOBILE SCROLL FIX
+   TEAMSIDEINE MOBILE SCROLL FIX — FINAL
    ============================ */
 
-.tsMainContent,
+html, body,
 .tsBody,
+.tsMain,
+.tsMainContent,
 .tsContent,
-.tsPage {
+.tsPage,
+#tsBody,
+#tsMain,
+#tsMainContent,
+#tsContent,
+#tsPage {
   height: auto !important;
   max-height: none !important;
   overflow: visible !important;
+  position: static !important;
 }
