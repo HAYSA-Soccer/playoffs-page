@@ -3,17 +3,25 @@ console.log("script.js loaded");
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbwaqSktudVfYj2RrdZNnO-NP0LXbVspLc1MND_DnpTs26A7xmsfaLOuyViBbYs3YFnC/exec";
 
 /* -------------------------------------------------------
-   Build Today’s Games Bar (Option A: ALL games today)
+   Build Today’s Games Bar (using new "date" column)
 ------------------------------------------------------- */
 function buildTodaysGames(teams) {
   const el = document.getElementById("today-games");
   if (!el) return;
 
+  // Today in YYYY-MM-DD format
   const today = new Date().toISOString().slice(0, 10);
 
   const todaysGames = teams.filter(t => {
-    if (!t.time) return false;
-    return String(t.time).slice(0, 10) === today;
+    if (!t.date) return false;          // no date column
+    if (t.date === "TBD") return false; // skip TBD
+    if (t.date.trim() === "") return false;
+
+    // Normalize date to YYYY-MM-DD
+    const gameDate = new Date(t.date);
+    const gameISO = gameDate.toISOString().slice(0, 10);
+
+    return gameISO === today;
   });
 
   if (todaysGames.length === 0) {
@@ -35,13 +43,16 @@ function buildTodaysGames(teams) {
   todaysGames.forEach(t => {
     html += `
       <div class="hay-today-game-item">
-        🕒 ${t.time} — ${t.division} (${t.coach}) vs ${t.opponent || 'TBD'} — ${t.field || 'TBD'}
+        🕒 ${t.time || 'TBD'} — ${t.division} (${t.coach})
+        vs ${t.opponent || 'TBD'} — ${t.field || 'TBD'}
       </div>
     `;
   });
 
   el.innerHTML = html;
 }
+
+
 
 
 /* -------------------------------------------------------
