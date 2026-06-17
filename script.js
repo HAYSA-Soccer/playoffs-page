@@ -2,11 +2,15 @@ console.log("script.js loaded");
 
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbwaqSktudVfYj2RrdZNnO-NP0LXbVspLc1MND_DnpTs26A7xmsfaLOuyViBbYs3YFnC/exec";
 
+/* -------------------------------------------------------
+   Pretty Date Formatter (YYYY-MM-DD → "Thursday, June 18th, 2026")
+------------------------------------------------------- */
 function formatPrettyDate(raw) {
   if (!raw || raw === "TBD") return raw;
 
-  const d = new Date(raw);
-  if (isNaN(d)) return raw; // fallback if sheet has weird data
+  // raw is already "YYYY-MM-DD" from Apps Script
+  const d = new Date(raw + "T00:00:00"); // force local date, no timezone shift
+  if (isNaN(d)) return raw;
 
   const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   const months = [
@@ -19,7 +23,6 @@ function formatPrettyDate(raw) {
   const dateNum = d.getDate();
   const year = d.getFullYear();
 
-  // Add ordinal suffix: st, nd, rd, th
   const suffix =
     dateNum % 10 === 1 && dateNum !== 11 ? "st" :
     dateNum % 10 === 2 && dateNum !== 12 ? "nd" :
@@ -31,25 +34,18 @@ function formatPrettyDate(raw) {
 
 
 /* -------------------------------------------------------
-   Build Today’s Games Bar (using new "date" column)
+   Build Today’s Games Bar
+   (Now safe because date is always YYYY-MM-DD)
 ------------------------------------------------------- */
 function buildTodaysGames(teams) {
   const el = document.getElementById("today-games");
   if (!el) return;
 
-  // Today in YYYY-MM-DD format
-  const today = new Date().toISOString().slice(0, 10);
+  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
 
   const todaysGames = teams.filter(t => {
-    if (!t.date) return false;          // no date column
-    if (t.date === "TBD") return false; // skip TBD
-    if (t.date.trim() === "") return false;
-
-    // Normalize date to YYYY-MM-DD
-    const gameDate = new Date(t.date);
-    const gameISO = gameDate.toISOString().slice(0, 10);
-
-    return gameISO === today;
+    if (!t.date || t.date === "TBD") return false;
+    return t.date === today; // direct string compare — no timezone issues
   });
 
   if (todaysGames.length === 0) {
@@ -63,7 +59,7 @@ function buildTodaysGames(teams) {
     return;
   }
 
-  // If there ARE games today → hype mode
+  // Hype mode
   el.classList.remove("hay-today-games-empty");
   el.classList.add("hay-today-games-active");
 
@@ -82,7 +78,6 @@ function buildTodaysGames(teams) {
 
 
 
-
 /* -------------------------------------------------------
    Main Loader
 ------------------------------------------------------- */
@@ -95,21 +90,20 @@ async function loadTeams() {
   const data = await res.json();
   console.log("Data returned:", data);
 
-  // NEW: Insert season title + last updated
+  // Insert season title + last updated
   document.getElementById("season-title").textContent = data.season_title;
   document.getElementById("last-updated").textContent = "Last updated: " + data.updated;
 
-  // ⭐ NEW: Insert hype text from the sheet
+  // Insert hype text
   document.getElementById("hype-text").innerHTML =
      data.hype_text
        .replace(/\|\|/g, "<br>")
        .replace(/\n/g, "<br>");
 
-
-  // NEW: Build Today’s Games bar
+  // Build Today’s Games bar
   buildTodaysGames(data.teams);
 
-  const teams = data.teams; // your old array, unchanged
+  const teams = data.teams;
   const grid = document.getElementById('card-grid');
 
   const template = await fetch('template.html').then(r => r.text());
@@ -129,14 +123,12 @@ async function loadTeams() {
         .replace(/{{status}}/g, team.status)
         .replace(/{{round}}/g, team.round)
         .replace(/{{opponent}}/g, team.opponent)
-        .replace(/{{date}}/g, formatPrettyDate(team.date))   // ⭐ NEW
-        .replace(/{{time}}/g, team.time)
+        .replace(/{{date}}/g, formatPrettyDate(team.date))
+        .replace(/{{time}}/g, team.time) // already formatted by Apps Script
         .replace(/{{field}}/g, team.field)
         .replace(/{{path_next}}/g, team.path_next)
         .replace(/{{path_then}}/g, team.path_then)
         .replace(/{{path_final}}/g, team.path_final);
-
-
 
       const wrapper = document.createElement('div');
       wrapper.innerHTML = html;
